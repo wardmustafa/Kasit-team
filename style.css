@@ -1,0 +1,15 @@
+.myclass , .myclass2
+{
+    font-size: 20pt;
+    color: blue;
+    background-color: black;
+    /*we use this comment in style*/
+}
+#myclass1
+{
+    font-size: 30pt;
+    color: black;
+}
+body {background-color: beige;}
+p.xy {text-align: center;background-color: brown;font-size: 30;}
+a:hover {color: aqua;}

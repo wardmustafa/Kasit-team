@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>0244242</title>
+    <style>
+      .container-menu h1 {
+        text-align: center;
+      }
+      .menu {
+        margin-left: 24%;
+        background-color: rgba(128, 128, 128, 0.438);
+        border: 5px dotted black;
+        width: 50%;
+        height: 840px;
+        padding: 20px;
+      }
+      .result {
+        margin-left: 24%;
+        font-size: 25px;
+        margin-top: 20px;
+      }
+      input {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+      ul {
+        list-style: none;
+        font-size: 30px;
+        padding: 0;
+      }
+      li {
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: rgba(128, 128, 128, 0.562);
+        cursor: pointer;
+      }
+      .food {
+        float: left;
+        width: 45%;
+      }
+      .Drinks {
+        float: right;
+        width: 45%;
+        margin-right: 30px;
+      }
+      #line {
+        width: 80%;
+        margin: 20px auto;
+      }
+      .clear {
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-menu">
+      <div class="menu">
+	  	<h1 class="title">Restaurant Menu</h1>
+        <div class="food">
+          <ul>   
+            <h3 style="color:darkgreen">Food</h3>
+            <li>
+              <input type="checkbox" value="10" onchange="bill()" id="product1" />
+              <label for="product1">Pizza - JD10</label>
+            </li>
+            <li>
+              <input type="checkbox" value="5" onchange="bill()" id="product2" />
+              <label for="product2">Burger - JD5</label>
+            </li>
+            <li>
+              <input type="checkbox" value="7" onchange="bill()" id="product3" />
+              <label for="product3">Pasta - JD7</label>
+            </li>
+            <li>
+              <input type="checkbox" value="3" onchange="bill()" id="product4" />
+              <label for="product4">Salad - JD3</label>
+            </li>
+          </ul>
+        </div>
+        <div class="Drinks">
+          <ul>
+            <h3 style="color:darkgreen">Drinks</h3>
+            <li>
+              <input type="checkbox" value="1.5" onchange="bill()" id="product5" />
+              <label for="product5">Coke - JD1.5</label>
+            </li>
+            <li>
+              <input type="checkbox" value="2" onchange="bill()" id="product6" />
+              <label for="product6">Lemonade - JD2</label>
+            </li>
+            <li>
+              <input type="checkbox" value="0.5" onchange="bill()" id="product7" />
+              <label for="product7">Water - JD0.5</label>
+            </li>
+            <li>
+              <input type="checkbox" value="1" onchange="bill()" id="product8" />
+              <label for="product8">Tea - JD1</label>
+            </li>
+          </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="result" id="result">
+          <hr id="line" color="black" />
+          <h2>Your Order Summary</h2>
+          <div id="orders">No items selected.<br/><span style='color:red'> Total: JD0<span/></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function bill() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        let summaryText = "";
+        let total = 0;
+        checkboxes.forEach(cb => {
+          if (cb.checked) {
+            const labelText = cb.nextElementSibling.textContent;
+            const productName = labelText.split(" - ")[0];
+            summaryText += productName + " <br> ";
+            total += parseFloat(cb.value);
+          }
+        });
+        const ordersDiv = document.getElementById("orders");
+        if (summaryText === "") {
+          ordersDiv.innerHTML = "No items selected.<br/><span style='color:red'> Total: JD0<span/>";
+        } else {
+          summaryText = summaryText.slice(0, -3);
+          ordersDiv.innerHTML = summaryText + "<br/><br><span style=\"color:red\">Total: JD<span/>" + total.toFixed(2);
+        }
+      }
+    </script>
+  </body>
+</html>
